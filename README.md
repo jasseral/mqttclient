@@ -1,6 +1,6 @@
 # mqttclient
 ---
-###### This proyect is a simple script that use mqttclient for repid reference  
+###### This proyect is a simple script that use mqttclient for rapid reference  
 
 ## Pre requisites
 - node v8.10.0 or above

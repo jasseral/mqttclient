@@ -12,8 +12,11 @@ optionsSubscribe={
     rh : true
 }
 
+//For use with  mqtts / tls
+//var client = mqtt.connect("mqtts://broker1.nube-iiot.com:8883",optionsConnect)
 
-var client = mqtt.connect("wss://broker1.nube-iiot.com:8083",optionsConnect)
+//For use with  mqtts / tcp 
+var client = mqtt.connect("mqtt://broker1.nube-iiot.com:1883",optionsConnect)
 
 client.on("connect",function(){	
     console.log("connected")    

@@ -1,11 +1,18 @@
 var mqtt=require('mqtt')
+var fs=require('fs')
 
 optionsConnect={
     clientId:"any_id",
-    username:"sammy",
-    password:"password",
+    ca: fs.readFileSync('certs/ca.ctr'),
+    key: fs.readFileSync('certs/client.key'),
+    cert: fs.readFileSync('certs/client.ctr'),
     clean:true
 }
+
+// optionsConnect={
+//     clientId:"any_id",
+//     clean:true
+// }
 
 optionsSubscribe={
     rap:true,
@@ -13,10 +20,9 @@ optionsSubscribe={
 }
 
 //For use with  mqtts / tls
-//var client = mqtt.connect("mqtts://broker1.nube-iiot.com:8883",optionsConnect)
-
-//For use with  mqtts / tcp 
-var client = mqtt.connect("mqtt://broker1.nube-iiot.com:1883",optionsConnect)
+var client = mqtt.connect("mqtts://157.230.248.143:8883",optionsConnect)
+//For use with  mqtt / tcp 
+//var client = mqtt.connect("mqtts://157.230.248.143:1883",optionsConnect)
 
 client.on("connect",function(){	
     console.log("connected")    
@@ -35,6 +41,6 @@ client.subscribe('test',optionsSubscribe,(cb)=>{
 })
 
 client.on('message',function(topic, message, packet){
-	console.log("message is "+ message);
-	console.log("topic is "+ topic);
+    console.log("message is "+ message);
+    console.log("topic is "+ topic);
 });
